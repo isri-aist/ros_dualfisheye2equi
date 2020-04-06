@@ -1,6 +1,6 @@
 <launch>
   <arg name="bagfile"/>
-	<arg name="inputImagesTopic" default="/camera/fisheye1/image_raw"/>
+	<arg name="inputImagesTopic" default="/THETA_S/image_raw"/>
 	<arg name="outputImagesTopic" default="/camera/equirectangular/image"/>
   <arg name="coordinatesTableFilename" default="/home/gcaron/Developpement/catkin_ws/src/ros_dual2equi/data/dual2equi_coordinates_mapping_921600elems_of_4unsignedint_struct_ue_ve_ud_vd.txt"/>
 

@@ -1,0 +1,28 @@
+<launch>
+  <arg name="bagfile"/>
+	<arg name="inputImagesTopic" default="/camera/fisheye1/image_raw"/>
+	<arg name="outputImagesTopic" default="/camera/equirectangular/image"/>
+  <arg name="coordinatesTableFilename" default="/home/gcaron/Developpement/catkin_ws/src/ros_dual2equi/data/dual2equi_coordinates_mapping_921600elems_of_4unsignedint_struct_ue_ve_ud_vd.txt"/>
+
+	<arg name="imWidth" default="1280"/>
+  <arg name="imHeight" default="960"/>
+
+  <node name="dual2equi_fromtable" pkg="ros_dual2equi" type="dual2equi_fromtable" > <!-- output="screen"  -->
+  <param name="inputImagesTopic" type="string" value="$(arg inputImagesTopic)"/> 
+  <param name="outputImagesTopic" type="string" value="$(arg outputImagesTopic)"/> 
+  <param name="coordinatesTableFilename" type="string" value="$(arg coordinatesTableFilename)"/>
+
+  <param name="imWidth" type="int" value="$(arg imWidth)"/>
+  <param name="imHeight" type="int" value="$(arg imHeight)"/>
+
+  <param name="image_transport" type="string" value="compressed"/>
+  </node>
+  
+	<node pkg="rosbag" type="play" name="rosbag_data_play" args="$(arg bagfile)"/> <!--  launch-prefix="bash -c 'sleep 5s; $0 $@' " -->
+
+<!--  <node pkg="rosbag" type="record" name="rosbag_equi_record" args="$(arg outputImagesTopic)"/> -->
+
+
+</launch>
+
+
